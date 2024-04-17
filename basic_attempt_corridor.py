@@ -33,7 +33,7 @@ if __name__ == "__main__":
     game.set_doom_scenario_path(os.path.join(vzd.scenarios_path, "deadly_corridor.wad"))
 
     # Sets map to start (scenario .wad files can contain many maps).
-    game.set_doom_map("map02")
+    game.set_doom_map("map01")
 
     # Sets resolution. Default is 320X240
     game.set_screen_resolution(vzd.ScreenResolution.RES_640X480)
@@ -78,7 +78,9 @@ if __name__ == "__main__":
     # game.add_available_button(vzd.Button.ATTACK)
     # Or by setting them all at once:
     game.set_available_buttons(
-        [vzd.Button.MOVE_LEFT, vzd.Button.MOVE_RIGHT, vzd.Button.ATTACK]
+        [vzd.Button.MOVE_LEFT, vzd.Button.MOVE_RIGHT, vzd.Button.ATTACK,
+         vzd.Button.LOOK_UP, vzd.Button.LOOK_DOWN, vzd.Button.ALTATTACK,
+         vzd.Button.TURN_LEFT, vzd.Button.TURN_RIGHT, vzd.Button.USE,]
     )
     # Buttons that will be used can be also checked by:
     print("Available buttons:", [b.name for b in game.get_available_buttons()])
@@ -130,7 +132,10 @@ if __name__ == "__main__":
     # MOVE_LEFT, MOVE_RIGHT, ATTACK
     # game.get_available_buttons_size() can be used to check the number of available buttons.
     # 5 more combinations are naturally possible but only 3 are included for transparency when watching.
-    actions = [[True, False, False], [False, True, False], [False, False, True]]
+    # actions = [[True, False, False], [False, True, False], [False, False, True]]
+    actions = [[False] * 9 for _ in range(9)]
+    for i in range(9):
+        actions[i][i] = True
 
     # Run this many episodes
     episodes = 10
