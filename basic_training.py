@@ -18,3 +18,6 @@ model.learn(total_timesteps=20000, callback=callback)
 # test
 model = PPO.load(CHECKPOINT_DIR + '/best_model_20000', env=env)
 mean_reward, std_reward = evaluate_policy(model, BaseEnv(render=True), n_eval_episodes=10)
+
+print(f"mean_reward:{mean_reward:.2f}")
+print(f"std_reward:{std_reward:.2f}")
