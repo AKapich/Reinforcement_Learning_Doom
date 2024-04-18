@@ -1,7 +1,7 @@
 from vizdoom import *
 import numpy as np
-from gym import Env
-from gym.spaces import Discrete, Box
+from gymnasium import Env
+from gymnasium.spaces import Discrete, Box
 import cv2
 
 class BasicVizDoomGym(Env): 
@@ -24,21 +24,28 @@ class BasicVizDoomGym(Env):
         if self.game.get_state(): 
             state = self.game.get_state().screen_buffer
             state = self.grayscale(state)
-            ammo = self.game.get_state().game_variables[0]
-            info = ammo
+            info = self.game.get_state().game_variables[0] # ammo
         else: 
             state = np.zeros(self.observation_space.shape)
             info = 0 
         
         info = {"info":info}
-        done = self.game.is_episode_finished()
+        terminated = self.game.is_episode_finished()
+
+        truncated = self.game.is_player_dead() or self.game.is_player_dead() or self.game.is_player_dead()
         
-        return state, reward, done, info 
+        return state, reward, terminated, truncated, info 
         
-    def reset(self): 
+    def reset(self, seed=0): 
         self.game.new_episode()
         state = self.game.get_state().screen_buffer
-        return self.grayscale(state)
+        
+        if self.game.get_state():
+            info = self.game.get_state().game_variables[0] # ammo
+        else:
+            info = 0
+
+        return (self.grayscale(state), {'ammo': info})
     
 
     def grayscale(self, observation):
