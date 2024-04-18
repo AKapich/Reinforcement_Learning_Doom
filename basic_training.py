@@ -12,7 +12,7 @@ callback = TrainAndLoggingCallback(check_freq=1000, save_path=CHECKPOINT_DIR)
 
 # train
 env = BaseEnv(render=False)
-model = PPO("CnnPolicy", env, verbose=1, tensorboard_log=LOG_DIR, learning_rate=0.0001, n_steps=256)
+model = PPO("CnnPolicy", env, verbose=1, tensorboard_log=LOG_DIR, learning_rate=0.0001, n_steps=2048)
 model.learn(total_timesteps=20000, callback=callback)
 
 # test
