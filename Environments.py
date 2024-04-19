@@ -7,7 +7,6 @@ import cv2
 
 class VizDoomGym(Env): 
     def __init__(self, scenario, render=True): 
-        assert scenario in ['basic', 'defend_the_center']
 
         self.game = DoomGame()
         self.game.load_config(f'{scenario}.cfg')
