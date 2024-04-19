@@ -4,12 +4,13 @@ from gymnasium import Env
 from gymnasium.spaces import Discrete, Box
 import cv2
 
-class BasicVizDoomGym(Env): 
-    def __init__(self, render=True): 
-        super().__init__()
+
+class VizDoomGym(Env): 
+    def __init__(self, scenario, render=True): 
+        assert scenario in ['basic', 'defend_the_center']
 
         self.game = DoomGame()
-        self.game.load_config('basic.cfg')
+        self.game.load_config(f'{scenario}.cfg')
         
         self.game.set_window_visible(render)
         self.game.init()
