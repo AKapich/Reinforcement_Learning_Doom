@@ -6,7 +6,7 @@ import cv2
 
 
 class VizDoomGym(Env): 
-    def __init__(self, scenario, render=True): 
+    def __init__(self, scenario, render=True, number_of_actions=3):
 
         self.game = DoomGame()
         self.game.load_config(f'{scenario}.cfg')
@@ -14,11 +14,12 @@ class VizDoomGym(Env):
         self.game.set_window_visible(render)
         self.game.init()
         
-        self.observation_space = Box(low=0, high=255, shape=(100,160,1), dtype=np.uint8) 
-        self.action_space = Discrete(3)
+        self.observation_space = Box(low=0, high=255, shape=(100,160,1), dtype=np.uint8)
+        self.number_of_actions = number_of_actions
+        self.action_space = Discrete(number_of_actions)
         
     def step(self, action):
-        actions = np.identity(3)
+        actions = np.identity(self.number_of_actions)
         reward = self.game.make_action(actions[action], 4) 
         
         if self.game.get_state(): 

@@ -1,4 +1,4 @@
-from environments import VizDoomGym as Env
+from Environments import VizDoomGym as Env
 from callbacks import TrainAndLoggingCallback
 from stable_baselines3.common.evaluation import evaluate_policy
 from stable_baselines3 import PPO
@@ -17,7 +17,7 @@ model.learn(total_timesteps=100000, callback=callback)
 
 # test
 model = PPO.load(CHECKPOINT_DIR + '/best_model_100000', env=env)
-mean_reward, std_reward = evaluate_policy(model, Env(render=True), n_eval_episodes=10)
+mean_reward, std_reward = evaluate_policy(model, Env(render=True, scenario='basic'), n_eval_episodes=10)
 
 print(f"mean_reward:{mean_reward:.2f}")
 print(f"std_reward:{std_reward:.2f}")
