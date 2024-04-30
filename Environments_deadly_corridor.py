@@ -20,7 +20,7 @@ class VizDoomGym(Env):
 
         self.damage_taken = 0
         self.hitcount = 0
-        self.ammo = 52
+        self.ammo = 26
 
     def step(self, action):
         actions = np.identity(7)
@@ -42,12 +42,12 @@ class VizDoomGym(Env):
             ammo_delta = ammo - self.ammo
             self.ammo = ammo
 
-            if CAMERA_ANGLE >= 90 and CAMERA_ANGLE<=270:
-                camera_reward = -norm.pdf(CAMERA_ANGLE, 180, 28)*50000
+            if 90 <= CAMERA_ANGLE <= 270:
+                camera_reward = -norm.pdf(CAMERA_ANGLE, 180, 28)*10000
             else:
                 camera_reward = 0
 
-            reward = movement_reward + damage_taken_delta*10 + hitcount_delta*50 + ammo_delta*100 + camera_reward
+            reward = movement_reward + damage_taken_delta*10 + hitcount_delta*210 + ammo_delta*5 + camera_reward
             info = ammo
         else:
             state = np.zeros(self.observation_space.shape)
@@ -62,6 +62,11 @@ class VizDoomGym(Env):
 
     def reset(self, seed=0):
         self.game.new_episode()
+
+        self.damage_taken = 0
+        self.hitcount = 0
+        self.ammo = 26
+
         state = self.game.get_state().screen_buffer
 
         if self.game.get_state():
