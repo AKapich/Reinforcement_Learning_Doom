@@ -1,11 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="895d51ab-2c16-4868-b9a1-0d265e1beec0" name="Changes" comment="">
+    <list default="true" id="895d51ab-2c16-4868-b9a1-0d265e1beec0" name="Changes" comment="update model for 400k steps">
       <change beforePath="$PROJECT_DIR$/Environments_deadly_corridor.py" beforeDir="false" afterPath="$PROJECT_DIR$/Environments_deadly_corridor.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/deadly_corridor_hand_scripted.py" beforeDir="false" afterPath="$PROJECT_DIR$/deadly_corridor_hand_scripted.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/deadly_corridor_training.py" beforeDir="false" afterPath="$PROJECT_DIR$/deadly_corridor_training.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/training/train/train_deadly_corridor/best_model_5000.zip" beforeDir="false" afterPath="$PROJECT_DIR$/training/train/train_deadly_corridor/best_model_5000.zip" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/scenarios/deadly_corridor_easy.cfg" beforeDir="false" afterPath="$PROJECT_DIR$/scenarios/deadly_corridor_easy.cfg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/scenarios/deadly_corridor_hard.cfg" beforeDir="false" afterPath="$PROJECT_DIR$/scenarios/deadly_corridor_hard.cfg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/scenarios/deadly_corridor_medium.cfg" beforeDir="false" afterPath="$PROJECT_DIR$/scenarios/deadly_corridor_medium.cfg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/scenarios/deadly_corridor_medium_multiple_variables.cfg" beforeDir="false" afterPath="$PROJECT_DIR$/scenarios/deadly_corridor_medium_multiple_variables.cfg" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -69,5 +71,6 @@
         </entry>
       </map>
     </option>
+    <option name="oldMeFiltersMigrated" value="true" />
   </component>
 </project>

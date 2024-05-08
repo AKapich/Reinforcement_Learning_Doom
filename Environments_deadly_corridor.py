@@ -49,6 +49,8 @@ class VizDoomGym(Env):
 
             reward = movement_reward + damage_taken_delta*10 + hitcount_delta*210 + ammo_delta*5 + camera_reward
             info = ammo
+
+            print(reward)
         else:
             state = np.zeros(self.observation_space.shape)
             info = 0
