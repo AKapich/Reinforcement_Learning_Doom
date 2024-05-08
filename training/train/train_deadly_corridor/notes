@@ -1,0 +1,59 @@
+Zauwazylem ze przy uczeniu dla tych parametrow:
+# env = Env(render=False, scenario='deadly_corridor_easy')
+# model = A2C("CnnPolicy", env, verbose=1, tensorboard_log=LOG_DIR, learning_rate=0.0001, n_steps=2048)
+# model.learn(total_timesteps=400000, callback=callback)
+w mapce deadly corridor z tymi ustawieniami reward:
+
+class VizDoomGym(Env):
+    def __init__(self, scenario, render=True):
+
+        self.game = DoomGame()
+        self.game.load_config(f'{scenario}.cfg')
+
+        self.game.set_window_visible(render)
+        self.game.init()
+
+        self.observation_space = Box(low=0, high=255, shape=(100, 160, 1), dtype=np.uint8)
+        self.action_space = Discrete(7)
+
+        self.damage_taken = 0
+        self.hitcount = 0
+        self.ammo = 52
+
+    def step(self, action):
+        actions = np.identity(7)
+        movement_reward = self.game.make_action(actions[action], 4)
+
+        reward = 0
+        if self.game.get_state():
+            state = self.game.get_state().screen_buffer
+            state = self.grayscale(state)
+
+            game_variables = self.game.get_state().game_variables
+            health, damage_taken, hitcount, ammo = game_variables
+            #change to damage count
+
+            damage_taken_delta = -damage_taken + self.damage_taken
+            self.damage_taken = damage_taken
+            hitcount_delta = hitcount - self.hitcount
+            self.hitcount = hitcount
+            ammo_delta = ammo - self.ammo
+            self.ammo = ammo
+
+            reward = movement_reward + damage_taken_delta*10 + hitcount_delta*200 + ammo_delta*5
+            info = ammo
+        else:
+            state = np.zeros(self.observation_space.shape)
+            info = 0
+
+        info = {"info": info}
+        terminated = self.game.is_episode_finished()
+
+        truncated = self.game.is_player_dead() or self.game.is_player_dead() or self.game.is_player_dead()
+
+        return state, reward, terminated, truncated, info
+
+Agent przy uczeniu sie na 4000 000 kroku srednio dziala, bo niby dostaje duzy reward a tak naprawde strzela w pierwszych 2 straznikow
+a potem idzie do tylu.
+
+Dodalem kare za odwracanie sie do tylu bo gowniarz musi isc do przodu. Zmienilem tez wagi strzelania.
