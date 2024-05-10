@@ -12,7 +12,7 @@ callback = TrainAndLoggingCallback(check_freq=100000, save_path=CHECKPOINT_DIR)
 # train
 # env = Env(render=False, scenario='deadly_corridor_medium_multiple_variables')
 # model = PPO("CnnPolicy", env, verbose=1, tensorboard_log=LOG_DIR, learning_rate=0.00001, n_steps=8192, clip_range=.1, gamma=.95, gae_lambda=.9)
-# model.learn(total_timesteps=400000, callback=callback)
+# model.learn(total_timesteps=1800000, callback=callback)
 
 #train
 # env = Env(render=False, scenario='deadly_corridor_easy')
@@ -21,9 +21,9 @@ callback = TrainAndLoggingCallback(check_freq=100000, save_path=CHECKPOINT_DIR)
 
 
 # test
-env = Env(render=False, scenario='deadly_corridor_medium')
-model = PPO.load(CHECKPOINT_DIR + '/best_model_1000000', env=env)
+env = Env(render=False, scenario='deadly_corridor_medium_multiple_variables')
+model = PPO.load(CHECKPOINT_DIR + '/best_model_1600000', env=env)
 mean_reward, std_reward = evaluate_policy(model, Env(render=True, scenario='deadly_corridor_medium_multiple_variables'), n_eval_episodes=5)
 
-# print(f"mean_reward:{mean_reward:.2f}")
-# print(f"std_reward:{std_reward:.2f}")
+print(f"mean_reward:{mean_reward:.2f}")
+print(f"std_reward:{std_reward:.2f}")

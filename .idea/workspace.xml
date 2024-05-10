@@ -1,13 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="895d51ab-2c16-4868-b9a1-0d265e1beec0" name="Changes" comment="update model for 400k steps">
+    <list default="true" id="895d51ab-2c16-4868-b9a1-0d265e1beec0" name="Changes" comment="add living_reward = -1 in deadly corridor">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Environments_deadly_corridor.py" beforeDir="false" afterPath="$PROJECT_DIR$/Environments_deadly_corridor.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/_vizdoom.ini" beforeDir="false" afterPath="$PROJECT_DIR$/_vizdoom.ini" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/deadly_corridor_training.py" beforeDir="false" afterPath="$PROJECT_DIR$/deadly_corridor_training.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/scenarios/deadly_corridor_easy.cfg" beforeDir="false" afterPath="$PROJECT_DIR$/scenarios/deadly_corridor_easy.cfg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/scenarios/deadly_corridor_hard.cfg" beforeDir="false" afterPath="$PROJECT_DIR$/scenarios/deadly_corridor_hard.cfg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/scenarios/deadly_corridor_medium.cfg" beforeDir="false" afterPath="$PROJECT_DIR$/scenarios/deadly_corridor_medium.cfg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/scenarios/deadly_corridor_medium_multiple_variables.cfg" beforeDir="false" afterPath="$PROJECT_DIR$/scenarios/deadly_corridor_medium_multiple_variables.cfg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/training/train/train_deadly_corridor/best_model_100000.zip" beforeDir="false" afterPath="$PROJECT_DIR$/training/train/train_deadly_corridor/best_model_100000.zip" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/training/train/train_deadly_corridor/best_model_1000000.zip" beforeDir="false" afterPath="$PROJECT_DIR$/training/train/train_deadly_corridor/best_model_1000000.zip" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/training/train/train_deadly_corridor/best_model_1200000.zip" beforeDir="false" afterPath="$PROJECT_DIR$/training/train/train_deadly_corridor/best_model_1200000.zip" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/training/train/train_deadly_corridor/best_model_400000.zip" beforeDir="false" afterPath="$PROJECT_DIR$/training/train/train_deadly_corridor/best_model_400000.zip" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -59,6 +61,14 @@
       <option name="presentableId" value="Default" />
       <updated>1714419250832</updated>
     </task>
+    <task id="LOCAL-00001" summary="add living_reward = -1 in deadly corridor">
+      <created>1715192880829</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1715192880829</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -72,5 +82,9 @@
       </map>
     </option>
     <option name="oldMeFiltersMigrated" value="true" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="add living_reward = -1 in deadly corridor" />
+    <option name="LAST_COMMIT_MESSAGE" value="add living_reward = -1 in deadly corridor" />
   </component>
 </project>

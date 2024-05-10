@@ -1,3 +1,5 @@
+import time
+
 from vizdoom import *
 import numpy as np
 from gymnasium import Env
@@ -25,7 +27,7 @@ class VizDoomGym(Env):
     def step(self, action):
         actions = np.identity(7)
         movement_reward = self.game.make_action(actions[action], 4)
-
+        time.sleep(0.05)
         reward = 0
         if self.game.get_state():
             state = self.game.get_state().screen_buffer
