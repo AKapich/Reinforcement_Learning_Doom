@@ -1,11 +1,15 @@
-from Environments import VizDoomGym as Env
-from callbacks import TrainAndLoggingCallback
+import sys
+import os
+sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
+
+from utils.environments import VizDoomGym as Env
+from utils.callbacks import TrainAndLoggingCallback
 from stable_baselines3.common.evaluation import evaluate_policy
 from stable_baselines3 import PPO
 
 
-CHECKPOINT_DIR = './training/train/train_defend_the_center'
-LOG_DIR = './training/logs/log_defend_the_center'
+CHECKPOINT_DIR = './training/train/train_defend_the_center/CHJ'
+LOG_DIR = './training/logs/log_defend_the_center/CJ'
 
 
 callback = TrainAndLoggingCallback(check_freq=10000, save_path=CHECKPOINT_DIR)

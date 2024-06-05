@@ -1,5 +1,9 @@
-from Environments import VizDoomGym as Env
-from callbacks import TrainAndLoggingCallback
+import sys
+import os
+sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
+
+from utils.environments import VizDoomGym as Env
+from utils.callbacks import TrainAndLoggingCallback
 from stable_baselines3.common.evaluation import evaluate_policy
 from stable_baselines3 import PPO
 

@@ -1,5 +1,10 @@
 from Environments_deadly_corridor import VizDoomGym as Env
-from callbacks import TrainAndLoggingCallback
+
+import sys
+import os
+sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
+
+from utils.callbacks import TrainAndLoggingCallback
 from stable_baselines3.common.evaluation import evaluate_policy
 from stable_baselines3 import PPO, A2C, DQN
 
