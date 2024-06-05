@@ -12,12 +12,14 @@ class VizDoomGym(Env):
     def __init__(self, scenario, render=True):
 
         self.game = DoomGame()
-        self.game.load_config(f'{scenario}.cfg')
+        self.game.load_config(f"{scenario}.cfg")
 
         self.game.set_window_visible(render)
         self.game.init()
 
-        self.observation_space = Box(low=0, high=255, shape=(100, 160, 1), dtype=np.uint8)
+        self.observation_space = Box(
+            low=0, high=255, shape=(100, 160, 1), dtype=np.uint8
+        )
         self.action_space = Discrete(7)
 
         self.damage_taken = 0
@@ -35,7 +37,7 @@ class VizDoomGym(Env):
 
             game_variables = self.game.get_state().game_variables
             health, damage_taken, hitcount, ammo, CAMERA_ANGLE = game_variables
-            #change to damage count
+            # change to damage count
 
             damage_taken_delta = -damage_taken + self.damage_taken
             self.damage_taken = damage_taken
@@ -45,11 +47,17 @@ class VizDoomGym(Env):
             self.ammo = ammo
 
             if 90 <= CAMERA_ANGLE <= 270:
-                camera_reward = -norm.pdf(CAMERA_ANGLE, 180, 28)*10000
+                camera_reward = -norm.pdf(CAMERA_ANGLE, 180, 28) * 10000
             else:
                 camera_reward = 0
 
-            reward = movement_reward + damage_taken_delta*10 + hitcount_delta*210 + ammo_delta*5 + camera_reward
+            reward = (
+                movement_reward
+                + damage_taken_delta * 10
+                + hitcount_delta * 210
+                + ammo_delta * 5
+                + camera_reward
+            )
             info = ammo
 
             print(reward)
@@ -60,7 +68,11 @@ class VizDoomGym(Env):
         info = {"info": info}
         terminated = self.game.is_episode_finished()
 
-        truncated = self.game.is_player_dead() or self.game.is_player_dead() or self.game.is_player_dead()
+        truncated = (
+            self.game.is_player_dead()
+            or self.game.is_player_dead()
+            or self.game.is_player_dead()
+        )
 
         return state, reward, terminated, truncated, info
 
@@ -78,7 +90,7 @@ class VizDoomGym(Env):
         else:
             info = 0
 
-        return (self.grayscale(state), {'ammo': info})
+        return (self.grayscale(state), {"ammo": info})
 
     def grayscale(self, observation):
         gray = cv2.cvtColor(np.moveaxis(observation, 0, -1), cv2.COLOR_BGR2GRAY)
